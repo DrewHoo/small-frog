@@ -1,23 +1,22 @@
 import pydux
 from pprint import pprint
 from reducer import reducer
+from game_engine import GameEngine
 
 
 def play():
     store = pydux.create_store(reducer)
-    store.subscribe(lambda: print(pprint(store.get_state())))
+    game_engine = GameEngine(store)
 
-    store.dispatch({'type': 'create_state'})
-    store.dispatch({
+    game_engine.request({'type': 'create_state'})
+    response = game_engine.request({
         'type': 'play_creature',
         'card_index': 0,
         'player': 'p1',
         'lane': 'field_lane'
     })
-    store.dispatch({
-        'type': 'consume_action'
-    })
-    print('get state {}'.format(pprint(store.get_state())))
+
+    print(pprint(response))
 
 
 if __name__ == '__main__':
