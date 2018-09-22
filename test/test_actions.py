@@ -5,6 +5,30 @@ from reducer import reducer
 from copy import deepcopy
 
 
+def test_end_turn():
+    old_state = deepcopy(DEFAULT_STATE)
+    action = {
+        'type': 'end_turn',
+        'player': 'p2'
+    }
+    old_state.update({'turn': 2})
+    new_state = reducer(old_state, action)
+    assert new_state['turn'] == 3
+
+    old_state = deepcopy(DEFAULT_STATE)
+    action = {
+        'type': 'end_turn',
+        'player': 'p1'
+    }
+    old_state.update({'turn': 2})
+    new_state = reducer(old_state, action)
+    assert new_state['turn'] == 2
+
+    # check to see if player number and turn match
+    # p1 can only end turn on odd turns
+    # p2 can only end turn on even turns
+
+
 def test_play_creature():
     old_state = deepcopy(DEFAULT_STATE)
     action = {

@@ -14,7 +14,7 @@ DEFAULT_PLAYER_STATE = {
 }
 
 DEFAULT_STATE = {
-    'turn': 0,
+    'turn': 1,
     'queued_action': None,
     'p1': deepcopy(DEFAULT_PLAYER_STATE),
     'p1_deck': [],
